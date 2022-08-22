@@ -4,7 +4,6 @@ $author_id = $post->post_author;
 
 $thumb = get_post_meta( get_the_ID(), 'animais_galeria', 1);
 if($thumb) {
-  // Para voltar tudo como era, basta renomear a variável abaixo para $first_image apenas
   $first_image_small = reset($thumb); // First image from the gallery
   $first_image_small = str_replace('-150x150','',$first_image_small);
 
@@ -31,13 +30,15 @@ $sex = $taxonomy_sex[0]->slug;
 global $pageEditPet;
 
 // Set as adopted (Author page)
-$pet_author = get_post_field('post_author', get_queried_object()->ID);
-$logged_in_user = get_current_user_id();
-if(!empty($_GET['id']) && !empty($_GET['adopted']) && $pet_author == $logged_in_user) {
+if(is_user_logged_in() && is_author()) {
+  $pet_author = get_post_field('post_author', get_queried_object()->ID);
+  $logged_in_user = get_current_user_id();
+  if(!empty($_GET['id']) && !empty($_GET['adopted']) && $pet_author == $logged_in_user) {
 
-  if($_GET['adopted'] == 'yes') { update_post_meta( $_GET['id'], 'animais_adocao_check', 'on' ); }
-  else if($_GET['adopted'] == 'no') { delete_post_meta( $_GET['id'], 'animais_adocao_check', 'on' ); }
+    if($_GET['adopted'] == 'yes') { update_post_meta( $_GET['id'], 'animais_adocao_check', 'on' ); }
+    else if($_GET['adopted'] == 'no') { delete_post_meta( $_GET['id'], 'animais_adocao_check', 'on' ); }
 
+  }
 }
 
 $adopted = get_post_meta( get_the_ID(), 'animais_adocao_check', true);
