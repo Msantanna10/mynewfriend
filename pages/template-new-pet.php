@@ -2,13 +2,12 @@
 
 /* Template Name: Add new pet */
 
-
 $success = false;
 $user_login_warning = false;
 
 if(!is_user_logged_in()) { wp_safe_redirect(home_url()); }
 
-// Se formulário foi enviado - validação
+// Post validation
 if ($_POST) {
 
   $pet_name = $_POST["pet_name"];  

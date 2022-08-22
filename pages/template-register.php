@@ -2,11 +2,10 @@
 
 /* Template Name: Sign Up */
 
-// Está logado, exibe aviso
-
 $success = false;
 $user_login_warning = false;
 
+// Redirects if logged in
 if(is_user_logged_in()) {
 
   $url = get_author_posts_url( get_current_user_id() );
@@ -14,10 +13,10 @@ if(is_user_logged_in()) {
 
 }
 
-// Não está logado, exibe form
+// Not logged in
 else {
   
-  // Se formulário foi enviado - validação
+  // Form validation
   if (isset( $_POST["user_login"] ) && wp_verify_nonce($_POST['register_nonce'], 'pippin-register-nonce')) {
 
     $user_login   = $_POST["user_login"];  
@@ -32,9 +31,6 @@ else {
     $city    = (!empty($_POST["city"])) ? $_POST["city"] : NULL;
     $user_pass    = $_POST["user_pass"];
     $pass_confirm   = $_POST["user_pass_confirm"];
-  
-    // this is required for username checks
-    // https://pippinsplugins.com/creating-custom-front-end-registration-and-login-forms/
   
     $errors = false;
 
