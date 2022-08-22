@@ -64,17 +64,17 @@ get_header(); ?>
 <div class="post-page">
   <div class="entrar body">
       <div class="container space">
-          <?php if($error == true) { echo '<p id="invalid">Dados inválidos, tente novamente.</p>'; } ?>
+          <?php if($error == true) { echo '<p id="invalid">Invalid, please try again.</p>'; } ?>
           <form id="login" name="form" action="" method="post">  
-                  <input id="username" type="text" placeholder="Apelido ou e-mail" name="username"><br>  
-                  <input id="password" type="password" placeholder="Senha" name="password">  
-                  <label><input id="rememberme" type="checkbox" name="rememberme" checked>Lembrar minha conta</label>
-                  <input id="submit" type="submit" name="submit" value="Entrar">  
+                  <input id="username" type="text" placeholder="Username or email" name="username"><br>  
+                  <input id="password" type="password" placeholder="Password" name="password">  
+                  <label><input id="rememberme" type="checkbox" name="rememberme" checked>Remember me</label>
+                  <input id="submit" type="submit" name="submit" value="Sign In">  
           </form>  
 
           <ul>
-            <li><a href="<?php the_permalink($pageSignUp); ?>">Não tenho cadastro, criar conta.</a></li>
-            <li><a href="<?php echo wp_lostpassword_url(); ?>">Esqueci minha senha.</a></li>
+            <li><a href="<?php the_permalink($pageSignUp); ?>">I don't have an account, create an account.</a></li>
+            <li><a href="<?php echo wp_lostpassword_url(); ?>">I forgot my password.</a></li>
           </ul>
 
       </div>

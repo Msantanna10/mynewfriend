@@ -152,8 +152,8 @@ get_header(); ?>
               <div class="col-md-9">
                 <select id="user_whats" name="user_whats" class="<?php if($validate_user_whats) { echo 'invalid'; } ?>">
                   <option value="">--- Select an option ---</option>
-                  <option value="sim" <?php if($user_whats == 'sim') { echo 'selected'; } ?>>Yes, it's WhatsApp</option>
-                  <option value="nao" <?php if($user_whats == 'nao') { echo 'selected'; } ?>>No, it's not WhatsApp</option>
+                  <option value="sim" <?php if(!empty($user_whats) && $user_whats == 'sim') { echo 'selected'; } ?>>Yes, it's WhatsApp</option>
+                  <option value="nao" <?php if(!empty($user_whats) && $user_whats == 'nao') { echo 'selected'; } ?>>No, it's not WhatsApp</option>
                 </select>
                 <?php if(!empty($user_whats_warning)) { ?>
                   <p id="all">

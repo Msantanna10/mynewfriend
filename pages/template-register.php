@@ -41,33 +41,33 @@ else {
         if(username_exists($user_login)) {
           // Username already registered
           $user_login_warning = array();
-          $user_login_warning[] = 'Este apelido já existe';
+          $user_login_warning[] = 'This username is taken!';
           $errors = true;
           $validate_user_login = true;
         }
         if(!empty($user_login)) {
           if(strlen($user_login) <= 3) {
               // invalid username
-              $user_login_warning[] = 'Digite um apelido maior';
+              $user_login_warning[] = 'Type a larger username';
               $errors = true;
               $validate_user_login = true;
           }
           if(!validate_username($user_login)) {
             // invalid username
-            $user_login_warning[] = 'Utilize um apelido sem espaços ou acentos';
+            $user_login_warning[] = 'Use a nickname without spaces or accents';
             $errors = true;
             $validate_user_login = true;
           }
         }
         else {
-            $user_login_warning[] =  'Digite um apelido';
+            $user_login_warning[] =  'Type a nickname';
             $errors = true;
             $validate_user_login = true;
         }            
         if($user_first == '') {
           // empty name
           $user_first_warning = array();
-          $user_first_warning[] = 'Digite seu primeiro nome';
+          $user_first_warning[] = 'Type your first name';
           $errors = true;
           $validate_user_first = true;
         }
@@ -80,28 +80,28 @@ else {
         if(!is_email($user_email)) {
           //invalid email
           $user_email_warning = array();
-          $user_email_warning[] = 'E-mail inválido';
+          $user_email_warning[] = 'Invalid email';
           $errors = true;
           $validate_user_email = true;
         }
         if(email_exists($user_email)) {
           //Email address already registered
           $user_email_warning = array();
-          $user_email_warning[] = 'Este e-mail já existe';
+          $user_email_warning[] = 'Email already exists!';
           $errors = true;
           $validate_user_email = true;
         }
         if($user_email_confirm == '') {
           // empty name
           $user_email_confirm_warning = array();
-          $user_email_confirm_warning[] = 'Digite a confirmação de e-mail';
+          $user_email_confirm_warning[] = 'Type your email again';
           $errors = true;
           $validate_user_email_confirm = true;
         }
         if($user_email != $user_email_confirm) {
           // empty name
           $user_email_confirm_warning = array();
-          $user_email_confirm_warning[] = 'Os e-mails não combinam';
+          $user_email_confirm_warning[] = 'Emails don\'t match';
           $errors = true;
           // $validate_user_email = true;
           $validate_user_email_confirm = true;
@@ -109,40 +109,40 @@ else {
         if($user_phone == '') {
           // passwords do not match
           $user_phone_warning = array();
-          $user_phone_warning[] = 'Digite um telefone';
+          $user_phone_warning[] = 'Type a phone';
           $errors = true;
           $validate_user_phone = true;
         }
         if($user_whats == '') {
-          // é whatsapp?
+          // is it Whatsapp?
           $user_whats_warning = array();
-          $user_whats_warning[] = 'Informe se é WhatsApp ou não';
+          $user_whats_warning[] = 'Select if it is WhatsApp or not';
           $errors = true;
           $validate_user_whats = true;
         }
         if(empty($state)) {
           $state_warning = array();
-          $state_warning[] = 'Escolha um estado';
+          $state_warning[] = 'Select a state';
           $errors = true;
           $validate_estado = true;
         }
         if(empty($city)) {
           $city_warning = array();
-          $city_warning[] = 'Escolha uma cidade';
+          $city_warning[] = 'Select a city';
           $errors = true;
           $validate_cidade = true;
         }
         if($user_pass == '') {
           // passwords do not match
           $user_pass_warning = array();
-          $user_pass_warning[] = 'Digite uma senha';
+          $user_pass_warning[] = 'Type a password';
           $errors = true;
           $validate_user_pass = true;
         }                                
         if($user_pass != $pass_confirm) {
           // passwords do not match
           $pass_confirm_warning = array();
-          $pass_confirm_warning[] = 'As senhas não combinam';
+          $pass_confirm_warning[] = 'Passwords don\'t match';
           $errors = true;
           $validate_user_pass = true;
           $validate_pass_confirm = true;
@@ -182,36 +182,36 @@ else {
         // wp_redirect(home_url());
         // exit;
 
-        // Envia email
+        // Sends email
         $headers = array(
           'Content-Type: text/html; charset=UTF-8',
-          'Meu Novo Amigo <contato@meunovoamigo.com.br>'
+          // 'My new friend <contato@meunovoamigo.com.br>'
         );
-        $html = 'É um prazer ter você conosco! Estamos dispostos a te ajudar a adotar seus animais, juntos faremos a diferença!
+        $html = 'It\'s a pleasure to have you with us! We are willing to help you adopt your animals, together we will make a difference!
         <br><br>
-        Você pode efetuar seu acesso utilizando seu <b>e-mail</b> ou seu usuário <b>'.$user_login.'</b> através deste link: '.get_site_url().'/entrar
+        You can log in using your <b>email</b> or your username <b>'.$user_login.'</b> through this link: '.get_the_permalink($pageLogIn).'
         <br><br>
-        Utilize a senha escolhida por você e comece a divulgar seus bichinhos <3
+        Use the password chosen by you and start promoting your pets <3
         <br><br>
-        Lembre-se de compartilhar seu link em suas redes sociais para que as pessoas possam ver todos seus pets cadastrados e entrar em contato com você!
+        Remember to share your link on your social media so people can see all your registered pets and get in touch with you!
         <br><br>
-        <b>Link do seu perfil:</b> '.get_author_posts_url($new_user_id).'
+        <b>Your profile link:</b> '.get_author_posts_url($new_user_id).'
         <br><br>
-        Conte com a gente!
+        Count on us!
         <br><br>
         <b>'.get_bloginfo('name').'</b>';
 
-        wp_mail($user_email, "Cadastro realizado com sucesso! ❤️", $html, $headers);
+        wp_mail($user_email, "Successfully registered! ❤️", $html, $headers);
 
       }
   
     }
   
-} // Fim da validação do formulário
+} // End sends form $_POST
 
 get_header();
 
-global $pageNewPet;
+global $pageNewPet, $pageLogIn;
 
 ?>
 
@@ -225,12 +225,12 @@ global $pageNewPet;
     <div class="container space">
           
         <?php if($success == true) { ?>
-        <div id="success"><p>Usuário criado com sucesso! <a href="<?php the_permalink($pageNewPet); ?>" target="_blank">Clique aqui</a> para cadastrar seu primeiro bichinho</p></div>
+        <div id="success"><p>User created successfully! <a href="<?php the_permalink($pageNewPet); ?>" target="_blank">Click</a> to add your first pet.</p></div>
         <?php } else { ?>
 
-        <p class="center" style="max-width: 810px;margin: 0 auto;">Crie sua conta para cadastrar, remover, editar e gerenciar seus bichinhos! Após a criação de sua conta pessoal, você terá acesso ao seu painel para adicionar seus pets em adoção. Cada pet cadastrado terá um link com todas as informações necessárias para compartilhá-lo em suas redes sociais, onde haverá as fotos do animal, descrição, seu telefone de contato, etc.
+        <p class="center" style="max-width: 810px;margin: 0 auto;">Create your account to register, remove, edit and manage your pets! After creating your personal account, you will have access to your dashboard to add your pets for adoption. Each registered pet will have a link with all the necessary information to share it on your social networks, where there will be photos of the animal, description, your contact number, etc.
         <br><br>
-        <b>Primeiro passo: </b>Preencha o formulário abaixo e crie sua conta, logo após isso, será feito um redirecionamento para que cadastre seu primeiro animalzinho em adoção para te ajudarmos a divulgá-lo em sua região 🥰
+        <b>First step: </b>Fill out the form below and create your account, shortly after that, you will be redirected to register your first pet for adoption so that we can help you publicize it in your region. 🥰
         </p>
         <br><br>
 
@@ -238,13 +238,13 @@ global $pageNewPet;
           <fieldset>
             <div class="row">
                 <div class="col-md-3" id="left">
-                  <label for="user_Login">Apelido</label>
+                  <label for="user_Login">Username</label>
                 </div>
                 <div class="col-md-9">
                   <input value="<?php echo $user_login; ?>" name="user_login" id="user_login" class="nospace first-letter-lowercase required <?php if($validate_user_login) { echo 'invalid'; } ?>" type="text"/>
-                  <span id="desc">Seu apelido vai se transformar no endereço de sua página aqui no <?php bloginfo('name'); ?>.
+                  <span id="desc">Your nickname will become the address of your page here on <?php bloginfo('name'); ?>.
                   <br>
-                  Assim: <?php echo get_site_url(); ?>/perfil/apelido
+                  Example: <?php echo get_site_url(); ?>/profile/username
                   </span>
                   <?php if($user_login_warning) { ?>
                   <p id="all">
@@ -259,11 +259,11 @@ global $pageNewPet;
             </div>
             <div class="row">                   
                 <div class="col-md-3" id="left">
-                  <label for="user_email">E-mail</label>
+                  <label for="user_email">Email</label>
                 </div>
                 <div class="col-md-9">
                   <input value="<?php if(!empty($user_email)) { echo $user_email; } ?>" name="user_email" id="user_email" class="nospace required <?php if($validate_user_email) { echo 'invalid'; } ?>" type="email"/>
-                  <span id="desc">Os adotantes interessados poderão te contactar por este e-mail.</span>
+                  <span id="desc">Interested adopters can contact you by this email.</span>
                   <?php if(!empty($user_email_warning)) { ?>
                   <p id="all">
                     <?php
@@ -277,11 +277,11 @@ global $pageNewPet;
             </div>
             <div class="row">                   
                 <div class="col-md-3" id="left">
-                  <label for="user_email_confirm">E-mail (de novo)</label>
+                  <label for="user_email_confirm">Confirm your email</label>
                 </div>
                 <div class="col-md-9">
                   <input value="<?php if(!empty($user_email_confirm)) { echo $user_email_confirm; } ?>" name="user_email_confirm" id="user_email_confirm" class="nospace required <?php if($validate_user_email_confirm) { echo 'invalid'; } ?>" type="email"/>
-                  <span id="desc">A gente pede duas vezes pra ter certeza de que você não vai errar!</span>
+                  <span id="desc">We ask twice to make sure you don't make a mistake!</span>
                   <?php if(!empty($user_email_confirm_warning)) { ?>
                   <p id="all">
                     <?php
@@ -295,7 +295,7 @@ global $pageNewPet;
             </div>
             <div class="row">                   
                 <div class="col-md-3" id="left">
-                    <label for="user_first">Nome</label>
+                    <label for="user_first">Name</label>
                 </div>
                 <div class="col-md-9">
                   <input value="<?php if(!empty($user_first)) { echo $user_first; } ?>" name="user_first" class="first-letter-capital nospace <?php if($validate_user_first) { echo 'invalid'; } ?>" id="user_first" maxlength="15" type="text"/>
@@ -312,7 +312,7 @@ global $pageNewPet;
             </div>
             <div class="row">                   
                 <div class="col-md-3" id="left">
-                    <label for="user_last">Sobrenome</label>
+                    <label for="user_last">Last name</label>
                 </div>
                 <div class="col-md-9">
                     <input value="<?php if(!empty($user_last)) { echo $user_last; } ?>" name="user_last" class="first-letter-capital" id="user_last" maxlength="15" type="text"/>
@@ -320,11 +320,11 @@ global $pageNewPet;
             </div>
             <div class="row">                   
                 <div class="col-md-3" id="left">
-                    <label for="user_phone">WhatsApp ou Telefone</label>
+                    <label for="user_phone">WhatsApp or phone</label>
                 </div>
                 <div class="col-md-9">
                   <input placeholder="( &nbsp; ) ____-____" value="<?php if(!empty($user_phone)) { echo $user_phone; } ?>" name="user_phone" class="telefone <?php if($validate_user_phone) { echo 'invalid'; } ?>" id="user_phone" type="tel"/>
-                  <span id="desc">Os adotantes interessados poderão te contactar por este número.</span>
+                  <span id="desc">Interested adopters can contact you on this number.</span>
                   <?php if(!empty($user_phone_warning)) { ?>
                     <p id="all">
                       <?php
@@ -338,13 +338,13 @@ global $pageNewPet;
             </div>
             <div class="row">                   
               <div class="col-md-3" id="left">
-                  <label for="user_whats">É WhatsApp?</label>
+                  <label for="user_whats">Is it WhatsApp?</label>
               </div>
               <div class="col-md-9">
                 <select id="user_whats" name="user_whats" class="<?php if($validate_user_whats) { echo 'invalid'; } ?>">
-                  <option value="">--- Selecione uma opção ---</option>
-                  <option value="sim" <?php if($user_whats == 'sim') { echo 'selected'; } ?>>Sim, é WhatsApp</option>
-                  <option value="nao" <?php if($user_whats == 'nao') { echo 'selected'; } ?>>Não, não é WhatsApp</option>
+                  <option value="">--- Select an option ---</option>
+                  <option value="sim" <?php if(!empty($user_whats) && $user_whats == 'sim') { echo 'selected'; } ?>>Yes, it's WhatsApp</option>
+                  <option value="nao" <?php if(!empty($user_whats) && $user_whats == 'nao') { echo 'selected'; } ?>>No, it's not WhatsApp</option>
                 </select>
                 <?php if(!empty($user_whats_warning)) { ?>
                   <p id="all">
@@ -359,23 +359,23 @@ global $pageNewPet;
             </div>
             <div class="row">                   
               <div class="col-md-3" id="left">
-                  <label for="user_private">Telefone privado</label>
+                  <label for="user_private">Private phone</label>
               </div>
               <div class="col-md-9">
                 <label>
                   <input value="on" name="user_private" class="privado" id="user_private" type="checkbox" <?php if(!empty($user_private)) { echo 'checked'; } ?>/>
-                  Ocultar telefone?
-                  <span id="desc">Ao marcar essa opção, apenas a nossa equipe poderá ver seu telefone. Mas essa opção reduz bastante as chances de um adotante entrar em contato.</span>
+                  Hide phone?
+                  <span id="desc">By checking this option, only our team will be able to see your phone. But this option greatly reduces the chances of an adopter contacting you.</span>
                 </label>
               </div>                    
             </div>
             <div class="row">                   
               <div class="col-md-3" id="left">
-                  <label for="state">Estado</label>
+                  <label for="state">State</label>
               </div>
               <div class="col-md-9">
                 <select id="state" name="state" class="<?php if(!empty($validate_estado)) { echo 'invalid'; } ?>">
-                  <option value="">--- Selecione um estado ---</option>
+                  <option value="">--- Select an option ---</option>
                 </select>   
                 <?php if(!empty($state_warning)) { ?>
                   <p id="all">
@@ -390,11 +390,11 @@ global $pageNewPet;
             </div>          
             <div class="row">                   
               <div class="col-md-3" id="left">
-                <label for="city">Cidade</label>
+                <label for="city">City</label>
               </div>
               <div class="col-md-9">
                 <select id="city" name="city" class="<?php if(!empty($validate_cidade)) { echo 'invalid'; } ?>">
-                  <option value="">--- Selecione uma cidade ---</option>
+                  <option value="">--- Select a city ---</option>
                 </select>  
                 <?php if(!empty($city_warning)) { ?>
                 <p id="all">
@@ -409,7 +409,7 @@ global $pageNewPet;
             </div>                
             <div class="row">                   
               <div class="col-md-3" id="left">
-                <label for="password">Senha</label>
+                <label for="password">Password</label>
               </div>
               <div class="col-md-9">
                 <input name="user_pass" id="password" class="required <?php if(!empty($validate_user_pass)) { echo 'invalid'; } ?>" type="password"/>
@@ -426,7 +426,7 @@ global $pageNewPet;
             </div>
             <div class="row">                   
               <div class="col-md-3" id="left">
-                <label for="password_again">Confirmação da senha</label>
+                <label for="password_again">Confirm your password</label>
               </div>
               <div class="col-md-9">
                 <input name="user_pass_confirm" id="password_again" class="required <?php if($validate_user_pass || $validate_pass_confirm) { echo 'invalid'; } ?>" type="password"/>
@@ -446,7 +446,7 @@ global $pageNewPet;
                 <input type="hidden" name="register_nonce" value="<?php echo wp_create_nonce('pippin-register-nonce'); ?>"/>
               </div>
               <div class="col-md-9">
-                <input type="submit" value="Criar conta"/>
+                <input type="submit" value="Create account"/>
               </div>                    
             </div>
           </fieldset>
