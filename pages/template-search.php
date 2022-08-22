@@ -95,21 +95,11 @@ get_header();
 
           ?>
           
-          <?php endwhile; wp_reset_postdata(); } else { echo '<p id="none">Nenhum pet encontrado! Tente novamente outra busca. <a href="'.get_the_permalink($pageSearchPage).'" id="botao">Ver todos os pets</a></p>'; } ?>
+          <?php endwhile; wp_reset_postdata(); } else { echo '<p id="none">No pet was found! Try a different search. <a href="'.get_the_permalink($pageSearchPage).'" id="botao">View all pets</a></p>'; } ?>
 
       </div>
 
       <?php if (function_exists("pagination")) { pagination($custom_query->max_num_pages); } ?>
-    </div>
-
-    <div class="myads" style="margin-top: 50px">
-      <a class="hide991" rel="nofollow" target="_blank" href="https://go.hotmart.com/J56703569S">
-        <img src="https://formulanegocioonline.com/afiliados/banners/banner-formulanegocioonline-728x90-4.jpg" style="max-width: 728px;margin: 0 auto;display: block;">
-      </a>
-
-      <a class="show991" rel="nofollow" target="_blank" href="https://go.hotmart.com/J56703569S">
-        <img src="https://formulanegocioonline.com/afiliados/banners/banner-formulanegocioonline-300-14.jpg" style="max-width: 300px;margin: 0 auto;display: block;">
-      </a>
     </div>
 
   </div>
