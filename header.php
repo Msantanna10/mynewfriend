@@ -220,7 +220,7 @@
             <div class="modal-body">
               <h2>Collaborate with our project! Help the pets and appear on our Superheroes wall! 😍</h2>
               <img alt="Curso adestramento descomplicado - Capa do curso - Logo" src="<?php bloginfo('template_url'); ?>/img/planos/plano2.png">
-              <a id="action" href="<?php if(!is_home()) { echo get_site_url() . '/'; } ?>#mural" data-dismiss="modal">Como funciona? 😍</a>
+              <a id="action" href="<?php if(!is_home()) { echo get_site_url() . '/'; } ?>#mural" data-dismiss="modal">How does it work?? 😍</a>
             </div>
           </div>
         </div>

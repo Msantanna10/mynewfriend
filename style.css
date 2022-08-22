@@ -492,8 +492,9 @@ body.page-id-116 .corpo {
     margin: 8px;
     border-radius: 0px 0px 8px 8px;
     position: relative;
-    overflow: hidden;
 }
+
+.author .all-pets .single {overflow: hidden;}
 
 .all-pets .single .bg {
     background-color: #fff;
